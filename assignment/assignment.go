@@ -1,7 +1,6 @@
 package assignment
 
 import (
-	"fmt"
 	"math"
 	"sort"
 	"strings"
@@ -64,26 +63,39 @@ func StringMask(s string, n uint) string {
 
 func WordSplit(arr [2]string) string {
 
-	var searchString string
-	var foundString string
-
+	words := strings.Split(arr[1], ",")
 	str := arr[0]
-	s := arr[1]
 
-	searchString = ""
-	foundString = ""
+	var searchString string
+	var foundStrings []string
 	for _, runeValue := range str {
 
 		searchString += string([]rune{runeValue})
-		if strings.Contains(s, searchString) {
-			foundString = searchString
+	searchStringFounded:
+		for _, w := range words {
+			if strings.EqualFold(searchString, w) {
+				foundStrings = append(foundStrings, searchString)
+				searchString = ""
+				break searchStringFounded
+			}
 		}
-
 	}
-	fmt.Println(foundString)
-	return ""
+	if len(foundStrings) != 2 {
+		return "not possible"
+	}
+
+	return strings.Join(foundStrings, ",")
 }
 
 func VariadicSet(i ...interface{}) []interface{} {
-	return nil
+	keys := make(map[interface{}]struct{})
+	list := []interface{}{}
+
+	for _, v := range i {
+		if _, value := keys[v]; !value {
+			keys[v] = struct{}{}
+			list = append(list, v)
+		}
+	}
+	return list
 }

@@ -7,6 +7,8 @@ import (
 	"testing"
 )
 
+type any = interface{}
+
 func TestAddUint32(t *testing.T) {
 	/*
 		Sum uint32 numbers, return uint32 sum value and boolean overflow flag
@@ -335,112 +337,112 @@ func TestStringMask(t *testing.T) {
 
 }
 
-//func TestWordSplit(t *testing.T) {
-//	words := "apple,bat,cat,goodbye,hello,yellow,why"
-//	/*
-//		Your goal is to determine if the first element in the array can be split into two words,
-//		where both words exist in the dictionary(words variable) that is provided in the second element of array.
-//
-//		cases need to pass:
-//			[2]string{"hellocat",words} => hello,cat
-//			[2]string{"catbat",words} => cat,bat
-//			[2]string{"yellowapple",words} => yellow,apple
-//			[2]string{"",words} => not possible
-//			[2]string{"notcat",words} => not possible
-//			[2]string{"bootcamprocks!",words} => not possible
-//	*/
-//
-//	cases := []struct {
-//		caseId       int
-//		inputString  [2]string
-//		expectString string
-//	}{
-//		{
-//			1,
-//			[2]string{"hellocat", words},
-//			"hello,cat",
-//		},
-//		{
-//
-//			2,
-//			[2]string{"catbat", words},
-//			"cat,bat",
-//		},
-//		{
-//			3,
-//			[2]string{"yellowapple", words},
-//			"yellow,apple",
-//		},
-//		{4,
-//			[2]string{"", words},
-//			"not possible",
-//		},
-//		{
-//			5,
-//			[2]string{"notcat", words},
-//			"not possible",
-//		},
-//		{
-//			6,
-//			[2]string{"bootcamprocks!", words},
-//			"not possible",
-//		},
-//	}
-//
-//	for _, c := range cases {
-//		t.Run(fmt.Sprintf("%s %d", "caseId :", c.caseId), func(t *testing.T) {
-//			result := WordSplit(c.inputString)
-//
-//			assert.Equal(t, c.expectString, result)
-//		})
-//	}
-//
-//}
+func TestWordSplit(t *testing.T) {
+	words := "apple,bat,cat,goodbye,hello,yellow,why"
+	/*
+		Your goal is to determine if the first element in the array can be split into two words,
+		where both words exist in the dictionary(words variable) that is provided in the second element of array.
 
-//func TestVariadicSet(t *testing.T) {
-//	/*
-//		FINAL BOSS ALERT :)
-//		Tip: Learn and apply golang variadic functions(search engine -> "golang variadic function" -> WOW You can really dance! )
-//
-//		Convert inputs to set(no duplicate element)
-//		cases need to pass:
-//			4,2,5,4,2,4 => []interface{4,2,5}
-//			"bootcamp","rocks!","really","rocks!" => []interface{"bootcamp","rocks!","really"}
-//			1,uint32(1),"first",2,uint32(2),"second",1,uint32(2),"first" => []interface{1,uint32(1),"first",2,uint32(2),"second"}
-//	*/
-//	type input []interface {
-//	}
-//	type expect []interface {
-//	}
-//
-//	cases := []struct {
-//		caseId int
-//		input  input
-//		expect expect
-//	}{
-//		{
-//			1,
-//			append(input{}, 4, 2, 5, 4, 2, 4),
-//			append(expect{}, 4, 2, 5),
-//		},
-//		{
-//
-//			1,
-//			append(input{}, "bootcamp", "rocks!", "really", "rocks!"),
-//			append(expect{}, "bootcamp", "rocks!", "really"),
-//		},
-//		{
-//			1,
-//			append(input{}, 1, uint32(1), "first", 2, uint32(2), "second", 1, uint32(2), "first"),
-//			append(expect{}, 1, uint32(1), "first", 2, uint32(2), "second"),
-//		},
-//	}
-//
-//	for _, c := range cases {
-//		t.Run(fmt.Sprintf("%s %d", "caseId :", c.caseId), func(t *testing.T) {
-//			set := VariadicSet(c.input)
-//			assert.Equal(t, []interface{}{4, 2, 5}, set)
-//		})
-//	}
-//
-//}
+		cases need to pass:
+			[2]string{"hellocat",words} => hello,cat
+			[2]string{"catbat",words} => cat,bat
+			[2]string{"yellowapple",words} => yellow,apple
+			[2]string{"",words} => not possible
+			[2]string{"notcat",words} => not possible
+			[2]string{"bootcamprocks!",words} => not possible
+	*/
+
+	cases := []struct {
+		caseId       int
+		inputString  [2]string
+		expectString string
+	}{
+		{
+			1,
+			[2]string{"hellocat", words},
+			"hello,cat",
+		},
+		{
+
+			2,
+			[2]string{"catbat", words},
+			"cat,bat",
+		},
+		{
+			3,
+			[2]string{"yellowapple", words},
+			"yellow,apple",
+		},
+		{4,
+			[2]string{"", words},
+			"not possible",
+		},
+		{
+			5,
+			[2]string{"notcat", words},
+			"not possible",
+		},
+		{
+			6,
+			[2]string{"bootcamprocks!", words},
+			"not possible",
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(fmt.Sprintf("%s %d", "caseId :", c.caseId), func(t *testing.T) {
+			result := WordSplit(c.inputString)
+
+			assert.Equal(t, c.expectString, result)
+		})
+	}
+
+}
+
+func TestVariadicSet(t *testing.T) {
+	/*
+		FINAL BOSS ALERT :)
+		Tip: Learn and apply golang variadic functions(search engine -> "golang variadic function" -> WOW You can really dance! )
+
+		Convert inputs to set(no duplicate element)
+		cases need to pass:
+			4,2,5,4,2,4 => []interface{4,2,5}
+			"bootcamp","rocks!","really","rocks!" => []interface{"bootcamp","rocks!","really"}
+			1,uint32(1),"first",2,uint32(2),"second",1,uint32(2),"first" => []interface{1,uint32(1),"first",2,uint32(2),"second"}
+	*/
+	type input []interface {
+	}
+	type expect []interface {
+	}
+
+	cases := []struct {
+		caseId int
+		input  []interface{}
+		expect []interface{}
+	}{
+		{
+			1,
+			[]any{4, 2, 5, 4, 2, 4},
+			[]any{4, 2, 5},
+		},
+		{
+
+			2,
+			[]interface{}{"bootcamp", "rocks!", "really", "rocks!"},
+			[]interface{}{"bootcamp", "rocks!", "really"},
+		},
+		{
+			1,
+			[]interface{}{1, uint32(1), "first", 2, uint32(2), "second", 1, uint32(2), "first"},
+			[]interface{}{1, uint32(1), "first", 2, uint32(2), "second"},
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(fmt.Sprintf("%s %d", "caseId :", c.caseId), func(t *testing.T) {
+			set := VariadicSet(c.input...)
+			assert.Equal(t, c.expect, set)
+		})
+	}
+
+}
