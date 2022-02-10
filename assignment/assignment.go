@@ -22,21 +22,17 @@ func CeilNumber(f float64) float64 {
 
 func AlphabetSoup(s string) string {
 
-	var intArray []int
+	var r []rune
 
 	for _, runeValue := range s {
-		intArray = append(intArray, int(runeValue))
+		r = append(r, runeValue)
 	}
 
-	sort.Ints(intArray)
+	sort.Slice(r, func(i, j int) bool {
+		return r[i] < r[j]
+	})
 
-	var runeArray []rune
-	for _, r := range intArray {
-		runeArray = append(runeArray, rune(r))
-	}
-
-	newS := string(runeArray)
-	return newS
+	return string(r)
 }
 
 func StringMask(s string, n uint) string {
